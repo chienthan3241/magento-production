@@ -1,0 +1,69 @@
+/**
+ * Cookies
+ */
+.cookie{
+	font-family: "Roboto",sans-serif;
+    background-color: rgb(158, 158, 158);
+    color: white;
+    position: fixed;
+    z-index: 100000;
+    text-align: left;
+    font-size:13px;
+    min-width: 100%;
+    left: 0;
+    line-height: 20px;
+}
+.cookie .content p {
+	margin-bottom: 0px;
+}
+
+.cookie .content p a {
+	color: #304a5b;
+	display: inline-block;
+  	vertical-align: middle;
+}
+.cookie .content p a:hover {
+	color: #3598db;
+}
+
+.cookie .content p span {
+	display: inline-block;
+  	vertical-align: middle;
+}
+
+.cookie .content p button.allow {
+	padding: 2px 12px;
+	display: inline-block;
+  	vertical-align: middle;
+  	background-color: #304a5b;
+  	float: right;
+}
+
+.cookie .content p button:hover {
+	background-color: #3598db;
+}
+/**
+ * END Cookies
+ */
+
+/* Start: issue 76 */
+.baseprice {
+    font-size: 11.2px !important;
+    font-weight: normal;
+
+}
+.baseprice .price {
+    font-size: 11.2px !important;
+    font-weight: normal;
+}
+/**11.2 px is the font size of the tax-details
+* End: issue 76
+*/
+.product-item-details span.gmt-product-brand {
+  color: #5f8eb6;
+  font-size: 12px;
+}
+
+.products-grid .product-item-info .product-item-details .price-box {
+  margin-bottom: 0;
+}

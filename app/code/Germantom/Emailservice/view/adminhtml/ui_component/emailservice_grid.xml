@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+<argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+        <item name="provider" xsi:type="string">emailservice_grid.emailservice_listing_data_source</item>
+        <item name="deps" xsi:type="string">emailservice_grid.emailservice_listing_data_source</item>
+    </item>
+    <item name="spinner" xsi:type="string">emailservice_columns</item>
+    
+</argument>
+
+<dataSource name="emailservice_listing_data_source">
+    <argument name="dataProvider" xsi:type="configurableObject">
+        <argument name="class" xsi:type="string">EmailserviceGridDataProvider</argument>
+        <argument name="name" xsi:type="string">emailservice_listing_data_source</argument>
+        <argument name="primaryFieldName" xsi:type="string">customer_service_id</argument>
+        <argument name="requestFieldName" xsi:type="string">id</argument>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="update_url" xsi:type="url" path="mui/index/render"/>
+            </item>
+        </argument>
+    </argument>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+        </item>
+    </argument>
+</dataSource>
+
+
+<container name="listing_top">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+        </item>
+    </argument>
+
+    <bookmark name="bookmarks">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+            	
+                <item name="storageConfig" xsi:type="array">
+                    <item name="namespace" xsi:type="string">emailservice_grid</item>
+                </item>
+            </item>
+        </argument>
+    </bookmark>
+
+    <component name="columns_controls">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="columnsData" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns</item>
+                </item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                <item name="displayArea" xsi:type="string">dataGridActions</item>
+            </item>
+        </argument>
+    </component>
+
+    <filterSearch name="fulltext">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="provider" xsi:type="string">emailservice_grid.emailservice_listing_data_source</item>
+                <item name="chipsProvider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.listing_filters_chips</item>
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current.search</item>
+                </item>
+            </item>
+        </argument>
+    </filterSearch>
+
+    <filters name="listing_filters">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="columnsProvider" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns</item>
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current.filters</item>
+                </item>
+                <item name="templates" xsi:type="array">
+                    <item name="filters" xsi:type="array">
+                        <item name="select" xsi:type="array">
+                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                            <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.listing_filters</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns.${ $.index }:visible</item>
+                    </item>
+                </item>
+            </item>
+            <item name="observers" xsi:type="array">
+                <item name="column" xsi:type="string">column</item>
+            </item>
+        </argument>
+        <filterInput name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">email</item>
+                    <item name="label" xsi:type="string" translate="true">Email</item>
+                </item>
+            </argument>
+        </filterInput>
+        <filterInput name="first_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">first_name</item>
+                    <item name="label" xsi:type="string" translate="true">First name</item>
+                </item>
+            </argument>
+        </filterInput>
+        <filterInput name="last_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">last_name</item>
+                    <item name="label" xsi:type="string" translate="true">Last name</item>
+                </item>
+            </argument>
+        </filterInput>
+        <filterRange name="created_time" class="Magento\Ui\Component\Filters\Type\DateRange">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">created_time</item>
+                        <item name="label" xsi:type="string" translate="true">Created</item>
+                        <item name="childDefaults" xsi:type="array">
+                            <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.listing_filters</item>
+                        </item>
+                    </item>
+                </argument>
+                <filterDate name="from">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataScope" xsi:type="string">from</item>
+                            <item name="label" xsi:type="string" translate="true">from</item>
+                            <item name="placeholder" xsi:type="string" translate="true">From</item>
+                            <item name="dateFormat" xsi:type="string" translate="true">MM/dd/YYYY</item>
+                        </item>
+                    </argument>
+                </filterDate>
+                <filterDate name="to">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataScope" xsi:type="string">to</item>
+                            <item name="label" xsi:type="string" translate="true">to</item>
+                            <item name="placeholder" xsi:type="string" translate="true">To</item>
+                            <item name="dateFormat" xsi:type="string" translate="true">MM/dd/YYYY</item>
+                        </item>
+                    </argument>
+                </filterDate>
+            </filterRange>
+       
+    </filters>
+    
+    <massaction name="listing_massaction">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="selectProvider" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns.ids</item>
+                <item name="indexField" xsi:type="string">customerservice_id</item>
+            </item>
+        </argument>
+        <action name="delete">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">delete</item>
+                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                    <item name="url" xsi:type="url" path="emailservice/index/massDelete"/>
+                    <item name="confirm" xsi:type="array">
+                        <item name="title" xsi:type="string" translate="true">Delete items</item>
+                        <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                    </item>
+                </item>
+            </argument>
+        </action>
+        <action name="enable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">enable</item>
+                    <item name="label" xsi:type="string" translate="true">Mark as not confirmed</item>
+                    <item name="url" xsi:type="url" path="emailservice/index/massStatus/status/0"/>
+                </item>
+            </argument>
+        </action>
+        <action name="disable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">disable</item>
+                    <item name="label" xsi:type="string" translate="true">Mark as confirmed</item>
+                    <item name="url" xsi:type="url" path="emailservice/index/massStatus/status/1"/>
+                </item>
+            </argument>
+        </action>            
+    
+    </massaction>
+    
+    <paging name="listing_paging">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current.paging</item>
+                </item>
+                <item name="selectProvider" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns.ids</item>
+            </item>
+        </argument>
+    </paging>
+</container>
+
+
+<columns name="emailservice_columns">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="storageConfig" xsi:type="array">
+                <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.bookmarks</item>
+                <item name="namespace" xsi:type="string">current</item>
+            </item>
+    
+            <item name="childDefaults" xsi:type="array">
+                <item name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.emailservice_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">emailservice_grid.emailservice_grid.listing_top.bookmarks</item>
+                    <item name="root" xsi:type="string">columns.${ $.index }</item>
+                    <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                </item>
+            </item>
+        </item>
+    </argument>
+
+    <selectionsColumn name="ids">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="resizeEnabled" xsi:type="boolean">false</item>
+                <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                <item name="indexField" xsi:type="string">customer_service_id</item>
+            </item>
+        </argument>
+    </selectionsColumn>
+
+    <column name="customer_service_id">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Service id</item>
+                <item name="sortOrder" xsi:type="number">11</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="gender">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Gender</item>
+                <item name="sortOrder" xsi:type="number">12</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="first_name">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">first name</item>
+                <item name="sortOrder" xsi:type="number">13</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="last_name">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">last name</item>
+                <item name="sortOrder" xsi:type="number">14</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="street">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">street</item>
+                <item name="sortOrder" xsi:type="number">15</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="street_number">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">street number</item>
+                <item name="sortOrder" xsi:type="number">16</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="street_additional">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">street additional</item>
+                <item name="sortOrder" xsi:type="number">17</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="postcode">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Post code</item>
+                <item name="sortOrder" xsi:type="number">18</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="city">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">City</item>
+                <item name="sortOrder" xsi:type="number">19</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="country">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Country</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="email">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Email</item>
+                <item name="sortOrder" xsi:type="number">21</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="order_number">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Order number</item>
+                <item name="sortOrder" xsi:type="number">22</item>
+            </item>
+        </argument>
+    </column>
+    
+    <column name="customer_number">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Customer number</item>
+                <item name="sortOrder" xsi:type="number">23</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="message">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Message</item>
+                <item name="sortOrder" xsi:type="number">24</item>
+            </item>
+        </argument>
+    </column>
+
+
+    <column name="status">
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Germantom\Emailservice\Model\Service\Source\Confirmstatus</item>
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">select</item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                <item name="editor" xsi:type="string">select</item>
+                <item name="dataType" xsi:type="string">select</item>
+                <item name="label" xsi:type="string" translate="true">Confirm Status</item>
+                <item name="sortOrder" xsi:type="number">25</item>
+            </item>
+        </argument>
+    </column> 
+
+    <column name="is_reply">
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Germantom\Emailservice\Model\Service\Source\Isreply</item>
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">select</item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                <item name="editor" xsi:type="string">select</item>
+                <item name="dataType" xsi:type="string">select</item>
+                <item name="label" xsi:type="string" translate="true">Is reply Email</item>
+                <item name="sortOrder" xsi:type="number">26</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="reply_status">
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Germantom\Emailservice\Model\Service\Source\Replystatus</item>
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">select</item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                <item name="editor" xsi:type="string">select</item>
+                <item name="dataType" xsi:type="string">select</item>
+                <item name="label" xsi:type="string" translate="true">Reply Status</item>
+                <item name="sortOrder" xsi:type="number">27</item>
+            </item>
+        </argument>
+    </column>
+
+    <column name="related_id">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">text</item>
+                <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">text</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Related Id</item>
+                <item name="sortOrder" xsi:type="number">28</item>
+            </item>
+        </argument>
+    </column>
+    
+    <column name="created_time" class="Magento\Ui\Component\Listing\Columns\Date">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="filter" xsi:type="string">dateRange</item>
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                <item name="dataType" xsi:type="string">date</item>
+                <item name="label" xsi:type="string" translate="true">Created</item>
+                <item name="sortOrder" xsi:type="number">29</item>
+            </item>
+        </argument>
+    </column> 
+
+    <actionsColumn name="actions" class="Germantom\Emailservice\Ui\Component\Listing\Column\Actions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="resizeEnabled" xsi:type="boolean">false</item>
+                <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                <item name="indexField" xsi:type="string">customer_service_id</item>
+            </item>
+        </argument>
+    </actionsColumn>  
+    
+</columns>
+
+</listing>

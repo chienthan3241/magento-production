@@ -1,0 +1,52 @@
+/*
+	page: view shopping cart; block: zusammenfassung
+*/
+
+/* for line versand, delet espace before : */
+#cart-totals .table.totals .mark span {
+	display:inline-block;
+	position:relative;
+	left:5px;
+}
+
+/* for line bestellsumme, delet espace before : */
+#cart-totals .table.totals .mark strong{
+	display:inline-block;
+	position:relative;
+	left:6px;
+}
+
+
+/*
+	page: page-checkout; block:order summary
+*/
+
+
+/* for line bestellsumme, delet espace before : */
+.opc-sidebar .opc-block-summary .table-totals tr.grand th::after {
+    content: none;
+}
+
+.opc-sidebar .opc-block-summary table.table-totals tbody th strong::after {
+	content: ":"
+}
+
+
+/* for line versand, delet espace before : */
+.opc-sidebar .opc-block-summary .table-totals th .value {
+	display:inline-block;
+	position:relative;
+	left:4px;
+}
+
+/* for all lines, add espace after : */
+.opc-sidebar .opc-block-summary table.table-totals tbody td {
+	padding-left:4px;
+	width: 27%;
+	text-align: right;
+}
+
+.opc-sidebar .opc-block-summary table.table-totals tbody th {
+	width: 73%;
+	text-align: right;
+}

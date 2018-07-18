@@ -1,0 +1,31 @@
+/*
+    for issue #142, layout error
+*/
+
+@media (min-width: 768px) {
+    .cms-home .row > .col-sm-9 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%; }
+}
+
+
+.cms-home .layout_4 .widget.featured .page-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 35px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+/*
+    for issue #152, brand page filter
+*/
+
+.brand-brand-view .brand-invisible,
+.brand-brand-view .filter-current .filter-current-subtitle,
+.brand-brand-view .filter-content .filter-actions {
+    display: none;
+}

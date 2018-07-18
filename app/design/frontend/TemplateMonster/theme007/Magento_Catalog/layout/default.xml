@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+        <!-- Theme XML -->
+            <referenceContainer name="rd.navbar" htmlClass="layout_1" />
+            <referenceBlock name="register-link" remove="true" />         <!--AP: -->
+            <!--<referenceBlock name="authorization-link" remove="true" />-->      <!--AP: for Sign In / Sign Out Link  -->
+            <referenceBlock name="wish-list-link" remove="true" />      <!--AP: Wunschliste Link  -->
+
+            <!--Sprachumschaltung verbergen-->
+            <referenceBlock name="store_language" remove="true"/>
+
+            <move element="header.panel" destination="rd.navbar" after="header_info"/>
+            <!-- Header Panel -->
+            <referenceContainer name="header.panel.grid-container">
+                <container name="panel.container.wrap" htmlClass="panel-container-wrap" htmlTag="div"/>
+            </referenceContainer>
+            <move element="header" destination="panel.container.wrap" before="-"/> <!-- Welcome message -->
+            <move element="header.switchers" destination="panel.container.wrap" after="header"/>
+            <move element="rd.navbar.collapse" destination="panel.container.wrap" after="-"/> <!-- Top links -->
+            <move element="minicart" destination="panel.container.wrap" after="header.switchers"/>
+            <move element="catalog.topnav" destination="header-wrapper.grid-container"/>
+
+            <!-- use module LayoutSwitcher. File header_layout_2.xml and header_layout_3.xml .... -->
+        <!-- Header Panel END -->
+
+
+
+        <referenceContainer name="main">
+            <container name="content.column.class" htmlTag="div" htmlClass="content-flex-column">
+                <container name="content.column" label="Main Content Area column"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="columns">
+            <container name="after.main.columns" label="After Main Columns" />
+        </referenceContainer>
+
+
+
+
+
+
+        <referenceBlock name="category.products.list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Catalog::product/list_layout_1.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="search_result_list">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Catalog::product/list_layout_1.phtml</argument>
+            </action>
+        </referenceBlock>
+
+
+
+        <!-- Footer -->
+        <referenceContainer name="footer" htmlClass="page-footer" htmlTag="footer">
+            <container name="footer.grid-container" htmlClass="container content footer" htmlTag="div" before="-">
+                <container name="footer.grid-row" htmlClass="row" htmlTag="div">
+
+                    <container name="footer.grid-col1" htmlClass="col-sm-3" htmlTag="div">
+                        <container name="footer.grid-col1.wrapper" htmlClass="footer-col" htmlTag="div">
+                            <block class="Magento\Framework\View\Element\Template" name="footer.col.title.1" template="Magento_Theme::html/footer_col_title_1.phtml" before="-"/>
+                            <container name="footer_col_content_1" htmlClass="footer-col-content" htmlTag="div">
+                                <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_1">
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_col_1</argument>
+                                    </arguments>
+                                </block>
+                            </container>
+                        </container>
+                    </container>
+
+                    <container name="footer.grid-col2" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_2" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_2</argument>
+                            </arguments>
+                        </block>
+                    </container>
+
+                    <container name="footer.grid-col3" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_3" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_3</argument>
+                            </arguments>
+                        </block>
+                    </container>
+
+                    <container name="footer.grid-col4" htmlClass="col-sm-3" htmlTag="div"/>
+                </container>
+            </container>
+
+            <referenceBlock name="catalog-search-advanced-link" remove="true" />      <!--AP: -->
+            <referenceBlock name="search-term-popular-link" remove="true" />      <!--AP: -->
+            <referenceBlock name="contact-us-link" remove="true" />      <!--AP: -->
+            <referenceBlock name="sales-guest-form-link" remove="true" />      <!--AP: -->
+            <referenceBlock name="privacy-policy-link" remove="true" />      <!--AP: -->
+            <!--eigene Links zum Footer hinzufügen-->
+            <referenceBlock name="footer_links">
+              <block type="cms/block" class="Magento\Cms\Block\Block" name="gmt_link_about_us" before="-">
+                  <arguments>
+                      <argument name="block_id" xsi:type="string">gmt_link_about_us</argument>
+                  </arguments>
+              </block>
+            </referenceBlock>
+            <!--END:eigene Links zum Footer hinzufügen-->
+        </referenceContainer>
+        <!--END:Footer-->
+
+
+
+            <!--<referenceContainer name="footer" htmlClass="page-footer layout_1">-->
+            <!--eigene Links zum Footer hinzufügen-->
+            <!--
+            <referenceBlock name="footer_links">
+              <block class="Magento\Framework\View\Element\Html\Link\Current" name="gmt-link-footer-1">
+                <arguments>
+                    <argument name="label" xsi:type="string">GMT - eigener Link</argument>
+                    <argument name="path" xsi:type="string">http://www.germantom.com</argument>
+                </arguments>
+              </block>
+            </referenceBlock>
+          -->
+            <!--END:eigene Links zum Footer hinzufügen-->
+            <!--eigenen Template hinzufügen-->
+            <!--
+            <referenceBlock name="footer">
+              <block class="Magento\Framework\View\Element\Html\Link\Current" name="gmt-link-footer-2" after ="-">
+                <arguments>
+                    <argument name="template" xsi:type="string">Magento_Catalog::gmt/gmt_template_footer.phtml</argument>
+                </arguments>
+              </block>
+            </referenceBlock>
+          -->
+            <!--END:eigenen Template hinzufügen-->
+            <!--Link aus dem Footer entfernen-->
+
+            <!--</referenceContainer>-->
+
+
+
+            <!-- use module LayoutSwitcher. File footer_layout_2.xml and footer_layout_3.xml  .... -->
+        <!-- Footer END -->
+    </body>
+</page>
